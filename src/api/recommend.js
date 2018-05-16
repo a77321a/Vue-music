@@ -1,7 +1,8 @@
 import jsonp from 'common/js/jsonp.js'
-import {commonParams,options} from "./config";
+import {commonParams,options,singerParams} from "./config";
 
 import axios from 'axios'
+import {data} from "./mock";
 
 export function getRecommend() {
   const url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
@@ -14,4 +15,22 @@ export function getRecommend() {
   })
   console.log(data)
   return jsonp(url,data,options)
+}
+
+export function getSingerList(sid) {
+  var dissid = sid ? sid :'all'
+  const url = 'https://szc.y.qq.com/v8/fcg-bin/v8.fcg'
+  const data = Object.assign({},singerParams, {
+    key: 'all_all_' + dissid,
+    loginUin: 1817169988,
+    hostUin: 0,
+    pagenum:1,
+    format: 'jsonp',
+    inCharset: 'utf8',
+    outCharset: 'utf-8',
+    notice: 0,
+    platform: 'yqq',
+    needNewCode: 0
+  })
+  return jsonp(url,data,options);
 }

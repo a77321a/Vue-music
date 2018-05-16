@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import {ERR_OK} from '@/api/config'
+  // import {ERR_OK} from '@/api/config'
   import {getRecommend} from '@/api/recommend'
   import {data} from "@/api/mock";
 

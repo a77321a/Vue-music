@@ -9,3 +9,10 @@ export const options = {
   param:'jsonpCallback'
 }
 export const ERR_OK = 0
+
+export const singerParams = {
+  channel: 'singer',
+  page: 'list',
+  pagesize: 100,
+  g_tk: 1798312681
+}
