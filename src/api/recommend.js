@@ -19,6 +19,7 @@ export function getRecommend() {
 
 export function getSingerList(sid) {
   var dissid = sid ? sid :'all'
+  console.log(sid)
   const url = 'https://szc.y.qq.com/v8/fcg-bin/v8.fcg'
   const data = Object.assign({},singerParams, {
     key: 'all_all_' + dissid,
