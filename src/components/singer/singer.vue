@@ -2,17 +2,19 @@
     <div class="singer">
       <p :class=" isFixed == true ? 'isFixed' :''" ref="topname" class="classify-title">{{TopName}}</p>
       <ul class="singer-name">
-        <li class="singer-detail" v-for="item in singerList">
+        <li @click="selectSinger(item)" class="singer-detail" v-for="item in singerList">
           <img :onerror="defaultImg" class="avatar" :src="imgUrl+item.Fsinger_mid+jpg" alt="">
           <span class="name">{{item.Fsinger_name}}</span>
         </li>
       </ul>
       <ul :class=" isTop == true ? 'istop' :''" ref="aside" class="aside-list">
-        <li @click="currentIndex(index),_SingerList(),_ImgErr()" ref="indexNum" class="details-code" v-for="(item,index) in codes" to="" >
+        <li @click="currentIndex(index),_SingerList()" ref="indexNum" class="details-code" v-for="(item,index) in codes" to="" >
           <span class="code-link">{{item}}</span>
         </li>
       </ul>
+      <router-view></router-view>
     </div>
+
 </template>
 
 <script>
@@ -43,6 +45,16 @@
       window.removeEventListener('scroll', this._headFixed)
     },
     methods: {
+      selectSinger(item) {
+        this.$router.push({
+          path: `/singer/${item.Fsinger_id}`
+        })
+        console.log(item)
+      },
+      selectItem(item) {
+        this.$emit('select', item),
+          console.log(item)
+      },
       _SingerList(){
         getSingerList(this.queryCode).then((res)=>{
           this.singerList = res.data.list

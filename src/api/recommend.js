@@ -1,5 +1,5 @@
 import jsonp from 'common/js/jsonp.js'
-import {commonParams,options,singerParams} from "./config";
+import {commonParams,options,singerParams,singerDetail} from "./config";
 
 import axios from 'axios'
 import {data} from "./mock";
@@ -19,7 +19,7 @@ export function getRecommend() {
 
 export function getSingerList(sid) {
   var dissid = sid ? sid :'all'
-  console.log(sid)
+
   const url = 'https://szc.y.qq.com/v8/fcg-bin/v8.fcg'
   const data = Object.assign({},singerParams, {
     key: 'all_all_' + dissid,
@@ -34,4 +34,13 @@ export function getSingerList(sid) {
     needNewCode: 0
   })
   return jsonp(url,data,options);
+}
+
+export function getSingerDetail(sid) {
+  console.log(sid)
+  const url ='https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg'
+  const data = Object.assign({},singerDetail,{
+    singerid:sid
+  })
+  return jsonp(url,data,options)
 }
